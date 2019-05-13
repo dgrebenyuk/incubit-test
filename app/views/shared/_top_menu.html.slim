@@ -5,3 +5,16 @@ nav.navbar.navbar-expand-md.navbar-dark.bg-dark
     span.navbar-toggler-icon
 
   #main-nav.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+
+    - if current_user
+      span
+        | Welcome
+        = current_user.username
+      = link_to 'Log Out', logout_path
+    - else
+      .actions.mt-2.mt-md-0
+        = link_to 'Login', login_path, class: 'btn btn-success'
+        span.mx-1 OR
+        = link_to 'Sign Up', signup_path, class: 'btn btn-success'
+
