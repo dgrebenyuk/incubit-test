@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  encoding: unicode
+  username: user
+
+development:
+  <<: *default
+  database: incubit_dev
+
+test:
+  <<: *default
+  database: incubit_test
+
+production:
+  <<: *default
+  database: incubit
