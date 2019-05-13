@@ -1,0 +1,12 @@
+.registration-container
+  - if flash[:alert]
+    .alert.alert-danger
+      = flash[:alert]
+  = form_tag sessions_path do |form|
+    .form-group
+      = label_tag :email, '', class: 'sr-only'
+      = text_field_tag :email, nil, class: 'form-control', placeholder: 'Email address', required: true, autofocus: true
+    .form-group
+      = label_tag :password, '', class: 'sr-only'
+      = password_field_tag :password, nil, class: 'form-control',  placeholder: 'Password', required: true
+    = submit_tag 'Login', class: 'btn btn-lg btn-primary btn-block'
