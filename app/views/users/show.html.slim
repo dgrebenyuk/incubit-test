@@ -1,15 +1,14 @@
-p#notice = notice
+h1.my-4 Your Profile
 
-p
-  strong Email:
-  = @user.email
-p
-  strong Password:
-  = @user.password
-p
-  strong Username:
-  = @user.username
+= simple_form_for(current_user, url: user_path) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-=> link_to 'Edit', edit_user_path(@user)
-'|
-=< link_to 'Back', users_path
+  .form-inputs
+    = f.input :email, disabled: true, hint: 'You cannot change your email.'
+    = f.input :username
+    = f.input :password, placeholder: 'New Password'
+    = f.input :password_confirmation, label: false, placeholder: 'New Password Confirmation'
+
+  .form-actions
+    = f.button :submit, class: 'btn btn-success mr-2'

@@ -1,5 +1,14 @@
-h1 New user
+.registration-container.p-3
+  h1.mb-4 Sign Up
 
-== render 'form'
+  = simple_form_for(@user, url: user_path) do |f|
+    = f.error_notification
+    = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-= link_to 'Back', users_path
+    .form-inputs
+      = f.input :email, label: false, placeholder: 'Email'
+      = f.input :password, label: false, required: true, placeholder: 'Password'
+      = f.input :password_confirmation, label: false, required: true, placeholder: 'Password Confirmation'
+
+    .form-actions
+      = f.button :submit, 'Sign Up', class: 'btn btn-success mr-2'
