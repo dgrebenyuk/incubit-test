@@ -1,0 +1,11 @@
+.registration-container.p-3
+  h1.mb-4 Reset Password Request
+
+  = simple_form_for(User.new, url: password_path) do |f|
+    - if flash[:alert]
+      .alert.alert-danger
+        = flash[:alert]
+    .form-inputs
+      = f.input :email, label: false, placeholder: 'Email'
+    = submit_tag 'Continue', class: 'btn btn-lg btn-primary btn-block'
+

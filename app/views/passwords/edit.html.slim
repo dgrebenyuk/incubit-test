@@ -1,0 +1,14 @@
+.registration-container.p-3
+  h1.mb-4 Reset Password
+
+  = simple_form_for(@user, url: password_path) do |f|
+    = f.error_notification
+    = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+    .form-inputs
+      = f.input :reset_password_token, as: :hidden
+      = f.input :password, label: false, required: true, placeholder: 'Password'
+      = f.input :password_confirmation, label: false, required: true, placeholder: 'Password Confirmation'
+
+    .form-actions
+      = f.button :submit, 'Reset Password', class: 'btn btn-success mr-2'

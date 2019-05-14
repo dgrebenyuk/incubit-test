@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resource :user, except: :edit
+  resource :password
   resources :sessions, only: [:new, :create, :destroy]
 
   get 'signup', to: 'users#new', as: 'signup'

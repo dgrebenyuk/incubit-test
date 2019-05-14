@@ -11,4 +11,6 @@
     .form-group
       = label_tag :password, '', class: 'sr-only'
       = password_field_tag :password, nil, class: 'form-control',  placeholder: 'Password', required: true
+    .form-group
+      = link_to 'Forgot password?', new_password_path
     = submit_tag 'Login', class: 'btn btn-lg btn-primary btn-block'
