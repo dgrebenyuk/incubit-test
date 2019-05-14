@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if @user.save
       UserMailer.with(user: @user).welcome_email.deliver_now
       session[:user_id] = @user.id
-      redirect_to user_path, notice: 'User was successfully created.'
+      redirect_to user_path, notice: t('alerts.sign_up')
     else
       render :new
     end
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
   def update
     if current_user.update(user_params)
-      redirect_to user_path, notice: 'User was successfully updated.'
+      redirect_to user_path, notice: t('alerts.user_update')
     else
       render :show
     end
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 
   def destroy
     current_user.destroy
-    redirect_to users_url, notice: 'User was successfully destroyed.'
+    redirect_to users_url, notice: t('alerts.user_destroy')
   end
 
   private

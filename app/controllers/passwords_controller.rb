@@ -5,11 +5,11 @@ class PasswordsController < ApplicationController
     if user
       user.generate_password_token! #generate pass token
       UserMailer.with(user: user).reset_password.deliver_now
-      flash[:notice] = "Instructions to reset your password have been emailed to you"
+      flash[:notice] = t('alerts.reset_instructions')
 
       redirect_to root_path
     else
-      flash.now[:alert] = "No user was found with email address #{user_params[:email]}"
+      flash.now[:alert] = t('alerts.no_user', email: user_params[:email])
       render :new
     end
   end
@@ -17,7 +17,7 @@ class PasswordsController < ApplicationController
   def edit
     @user = User.where('reset_password_token = ? and reset_password_sent_at > ?', params[:token], 6.hours.ago).first
     unless @user
-      flash[:error] = "Token is invalid or expired"
+      flash[:error] = t('alerts.invalid_token')
       redirect_to root_path
     end
   end
@@ -25,12 +25,12 @@ class PasswordsController < ApplicationController
   def update
     @user = User.where('reset_password_token = ? and reset_password_sent_at > ?', user_params[:reset_password_token], 6.hours.ago).first
     unless @user
-      flash[:error] = "Token is invalid or expired"
+      flash[:error] = t('alerts.invalid_token')
       redirect_to root_path and return
     end
 
     if @user.update(user_params)
-      redirect_to root_path, notice: 'Password was successfully reset.'
+      redirect_to root_path, notice: t('alerts.success_reset')
     else
       render :edit
     end
