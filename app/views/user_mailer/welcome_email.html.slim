@@ -3,6 +3,6 @@ h1
   = @user.username
 p You have successfully signed up to Test Site
 p
-  | To login to the site, just follow this link:
-  = @url
+  | To login to the site, just follow
+  =< link_to 'this link', @url
 p Thanks for joining and have a great day!

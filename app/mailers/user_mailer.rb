@@ -4,13 +4,13 @@ class UserMailer < ApplicationMailer
 
   def welcome_email
     @user = params[:user]
-    @url  = 'http://localhost:3000/login'
+    @url  = login_url
     mail(to: @user.email, subject: 'Welcome to Incubit Test Site')
   end
 
   def reset_password
     @user = params[:user]
-    @url = "http://localhost:3000/password/edit?token=#{@user.reset_password_token}"
+    @url = edit_password_url token: @user.reset_password_token
     mail(to: @user.email, subject: 'Reset Password')
   end
 end
