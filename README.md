@@ -1,24 +1,40 @@
-# README
+## Installation
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Clone this repo:
 
-Things you may want to cover:
+    $ git clone git@github.com:dgrebenyuk/incubit-test.git
 
-* Ruby version
+Then execute:
 
-* System dependencies
+    $ bundle install
 
-* Configuration
+Create local DB config
 
-* Database creation
+    $ cd ./incubit-test/config
+    $ cp database.yml.example database.yml
 
-* Database initialization
+Edit `database.yml` file to fit you local settings.
 
-* How to run the test suite
+Create databases and run migrations
 
-* Services (job queues, cache servers, search engines, etc.)
+    $ rails db:create
+    $ rails db:migrate
 
-* Deployment instructions
+Start server
 
-* ...
+    $ rails s
+
+## RSpec
+
+Current functionality is covered by rspec tests.
+
+    $ bundle
+    $ rspec
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/dgrebenyuk/incubit-test.
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
