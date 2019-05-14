@@ -33,6 +33,8 @@ group :test do
   gem 'faker'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
+  gem 'rails-controller-testing'
 end
 
 group :development, :test do
