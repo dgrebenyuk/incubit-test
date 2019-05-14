@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SpecTestHelper
   def login(user)
     user = User.where(email: user.email).first

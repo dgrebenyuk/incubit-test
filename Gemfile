@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -31,12 +33,13 @@ group :test do
   gem 'chromedriver-helper'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
-  gem 'rails-controller-testing'
 end
 
 group :development, :test do
   gem 'pry-rails'
+  gem 'rubocop', '~> 0.69.0', require: false
 end

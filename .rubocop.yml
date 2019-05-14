@@ -1,0 +1,10 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/*'
+    - 'Rakefile'
+    - 'spec/{spec_helper.rb,rails_helper.rb}'
+Documentation:
+  Enabled: false

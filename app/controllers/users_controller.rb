@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   def new
     @user = User.new
@@ -16,6 +18,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    user_params.delete(:email) # Forbid email update
     if current_user.update(user_params)
       redirect_to user_path, notice: t('alerts.user_update')
     else
@@ -29,8 +32,10 @@ class UsersController < ApplicationController
   end
 
   private
-    # Only allow a trusted parameter "white list" through.
-    def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :username)
-    end
+
+  # Only allow a trusted parameter "white list" through.
+  def user_params
+    params.require(:user).permit(:email, :password,
+                                 :password_confirmation, :username)
+  end
 end

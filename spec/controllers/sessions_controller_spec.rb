@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
   describe 'GET new' do
     context 'already logged in' do
       before do
-        login(create :user)
+        login(create(:user))
       end
 
       it 'should redirect to user profile if user is logged in' do
@@ -25,7 +27,7 @@ RSpec.describe SessionsController, type: :controller do
     it 'should not login with bad credentials' do
       post :create, params: { email: user.email, password: '123' }
       expect(response.status).to eq(200)
-      expect(request.flash[:alert] ).to_not be_nil
+      expect(request.flash[:alert]).to_not be_nil
     end
   end
 end
