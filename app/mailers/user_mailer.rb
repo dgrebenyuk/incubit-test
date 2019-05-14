@@ -10,7 +10,7 @@ class UserMailer < ApplicationMailer
 
   def reset_password
     @user = params[:user]
-    @url = "http://localhost:3000/password?token=#{@user.reset_password_token}"
+    @url = "http://localhost:3000/password/edit?token=#{@user.reset_password_token}"
     mail(to: @user.email, subject: 'Reset Password')
   end
 end

@@ -17,7 +17,7 @@ class PasswordsController < ApplicationController
   def edit
     @user = User.where('reset_password_token = ? and reset_password_sent_at > ?', params[:token], 6.hours.ago).first
     unless @user
-      flash.now[:alert] = "Token is invalid or expired"
+      flash[:error] = "Token is invalid or expired"
       redirect_to root_path
     end
   end
@@ -25,8 +25,8 @@ class PasswordsController < ApplicationController
   def update
     @user = User.where('reset_password_token = ? and reset_password_sent_at > ?', user_params[:reset_password_token], 6.hours.ago).first
     unless @user
-      flash.now[:alert] = "Token is invalid or expired"
-      redirect_to(root_path, alert: "Token is invalid or expired") and return
+      flash[:error] = "Token is invalid or expired"
+      redirect_to root_path and return
     end
 
     if @user.update(user_params)
